@@ -6,10 +6,6 @@ use std::thread;
 use anyhow::*;
 use log::*;
 
-// this import is needed to build the project
-#[allow(unused_imports)]
-use esp_idf_svc::httpd as idf;
-
 use esp_idf_sys;
 
 use crate::led_strip::Led;
@@ -35,7 +31,7 @@ fn main() -> Result<()> {
 
     const L: u8 = 0x00;
     const H: u8 = 0x05;
-    const DURATION: Duration = Duration::from_millis(0);
+    const DURATION: Duration = Duration::from_millis(10);
     const NUM_STEPS: u32 = 20;
     led.fade_to(L, L, L, 5, DURATION)?;
     loop {

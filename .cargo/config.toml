@@ -5,7 +5,7 @@ target = "riscv32imc-esp-espidf"
 linker = "ldproxy"
 # Future - necessary for the experimental "native build" of esp-idf-sys with ESP32C3
 # See also https://github.com/ivmarkov/embuild/issues/16
-#rustflags = ["-C", "default-linker-libraries"]
+rustflags = ["-C", "default-linker-libraries"]
 
 [unstable]
 build-std = ["std", "panic_abort"]
@@ -13,15 +13,12 @@ build-std-features = ["panic_immediate_abort"]
 
 [env]
 ESP_IDF_SYS_GLOB_BASE = { value = ".", relative = true }
-#ESP_IDF_VERSION = { value = "master" } # Uncomment this and enable the esp-idf-sys "native" build feature to build against ESP-IDF master
+ESP_IDF_VERSION = { value = "master" } # Uncomment this and enable the esp-idf-sys "native" build feature to build against ESP-IDF master
 
 # These configurations will pick up your custom "sdkconfig.release" (for release builds) / "sdkconfig.debug" (for debug bulds) that you might put in the root of the project
 # The easiest way to generate these configurations is by running "cargo pio espidf menuconfig"
 # The 3rd one shows picks up a "defaults" file. you should use either "sdkconfig.*" or "defaults" but not both
-ESP_IDF_SYS_GLOB_0 = { value = "/sdkconfig.release" }
-ESP_IDF_SYS_GLOB_1 = { value = "/sdkconfig.debug" }
-ESP_IDF_SYS_GLOB_2 = { value = "/sdkconfig.defaults" }
-ESP_IDF_SYS_GLOB_3 = { value = "/sdkconfig.defaults.*" }
+ESP_IDF_SYS_GLOB_0 = { value = "/sdkconfig.*" }
 
 # Same thing but for the native build. Currently the native and PIO builds disagree how sdkconfig configuration should be passed to the ESP-IDF build
 # See https://github.com/esp-rs/esp-idf-sys/issues/10#issuecomment-919022205
