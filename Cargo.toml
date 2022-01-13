@@ -9,10 +9,10 @@ opt-level = "s"
 [dependencies]
 anyhow = {version = "1", features = ["backtrace"]}
 log = "0.4"
-esp-idf-sys = { version = "0.27", features = ["binstart", "native"] }
+esp-idf-sys = { version = "0.30", features = ["binstart", "native"] }
 
 [build-dependencies]
-embuild = "0.25"
+embuild = "0.28"
 anyhow = "1"
 
 [patch.crates-io]
