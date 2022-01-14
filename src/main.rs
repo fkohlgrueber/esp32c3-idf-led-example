@@ -12,6 +12,10 @@ use crate::led_strip::Led;
 
 
 fn main() -> Result<()> {
+
+    // Bind the log crate to the ESP Logging facilities
+    esp_idf_svc::log::EspLogger::initialize_default();
+
     info!("Let's use the esp32c3 rgb led!");
 
     let mut led = Led::new(

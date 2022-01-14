@@ -5,7 +5,6 @@ use esp_idf_sys::{
     rmt_carrier_level_t_RMT_CARRIER_LEVEL_LOW, rmt_channel_t, rmt_config_t,
     rmt_config_t__bindgen_ty_1, rmt_mode_t_RMT_MODE_TX, rmt_tx_config_t, ESP_OK,
 };
-use log::*;
 
 const WS2812_T0H_NS: u32 = 350;
 const WS2812_T0L_NS: u32 = 1000;
@@ -123,7 +122,6 @@ impl<const NUM_LEDS: usize> LedStrip<NUM_LEDS> {
         }
         let led_strip_p: *const Self = src.cast();
         let led_strip_ref: &Self = &*led_strip_p;
-        info!("{:?}", led_strip_ref);
         let bit0 = Self::get_rmt_item32(
             led_strip_ref.ws2812_t0h_ticks,
             1,
